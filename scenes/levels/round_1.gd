@@ -7,6 +7,7 @@ var derecha_arriba := Vector2(227,-233)
 var derecha_abajo := Vector2(-238,-248)
 var izquierda_abajo := Vector2(-326,89)
 
+signal vuelta_terminada #para avisar cuando termine
 
 var estado: int = 0
  
@@ -32,4 +33,7 @@ func _process(delta: float) -> void:
 	elif estado == 3:
 		global_position = global_position.move_toward(izquierda_arriba, velocidad * delta)
 		if global_position == izquierda_arriba:
-			estado = 0
+			estado = 4
+			vuelta_terminada.emit() #emite que termino 
+			hide()
+			set_process(false)

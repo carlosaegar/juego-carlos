@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://crrddxn76kqyq"
-path="res://.godot/imported/ROUND1.png-1856092f65ca7d5ed78d9bd2d1bce2f7.ctex"
+uid="uid://dicjbrf8j4qct"
+path="res://.godot/imported/boxeador2.png-81c67a2aec20c7db71783d50b8e429d6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/ROUND1.png"
-dest_files=["res://.godot/imported/ROUND1.png-1856092f65ca7d5ed78d9bd2d1bce2f7.ctex"]
+source_file="res://assets/sprites/boxeador2.png"
+dest_files=["res://.godot/imported/boxeador2.png-81c67a2aec20c7db71783d50b8e429d6.ctex"]
 
 [params]
 
