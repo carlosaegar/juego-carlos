@@ -9,8 +9,20 @@
 [ext_resource type="Texture2D" uid="uid://128hbo5fb06y" path="res://assets/sprites/round1_hombre.png" id="10_drb53"]
 [ext_resource type="Script" uid="uid://q6ssj2gnora6" path="res://scenes/levels/round_1.gd" id="11_cu60p"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6v24v"]
+size = Vector2(329.15942, 480.78815)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2u8ga"]
+size = Vector2(142.0966, 99.16817)
+
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8ua58"]
 load_path = "res://.godot/imported/__Boxing04_PunchLeft_003.png-e3dd971c03f1bae5d8a707aa1a9a8359.ctex"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hh15x"]
+size = Vector2(176.58728, 266.81845)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w36i3"]
+size = Vector2(88.59717, 62.19078)
 
 [node name="Esena1" type="Node2D" unique_id=605605844]
 script = ExtResource("1_b2bpc")
@@ -18,8 +30,9 @@ script = ExtResource("1_b2bpc")
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1905636789]
 
 [node name="Ring" type="Sprite2D" parent="." unique_id=381194518]
-position = Vector2(-5, 13)
-scale = Vector2(11.619999, 10.758332)
+texture_filter = 6
+position = Vector2(0.99999905, 8.562511)
+scale = Vector2(12.06, 11.547916)
 texture = ExtResource("1_qogyp")
 script = ExtResource("2_81xpm")
 
@@ -29,15 +42,51 @@ rotation = 6.2831855
 scale = Vector2(0.29905915, 0.28234884)
 texture = ExtResource("2_3ard5")
 script = ExtResource("3_jham1")
+Dano = 1
+
+[node name="Hurtbox" type="Area2D" parent="boxeador2" unique_id=1028974434]
+position = Vector2(-76.907845, 31.875488)
+scale = Vector2(1.0000001, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="boxeador2/Hurtbox" unique_id=2025170829]
+position = Vector2(-3.3438416, 3.5417175)
+shape = SubResource("RectangleShape2D_6v24v")
+
+[node name="HitboxPuno" type="Area2D" parent="boxeador2" unique_id=458921383]
+scale = Vector2(1.0000001, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="boxeador2/HitboxPuno" unique_id=1508392361]
+position = Vector2(-321.00668, 49.58412)
+shape = SubResource("RectangleShape2D_2u8ga")
+disabled = true
 
 [node name="boxeador1" type="Sprite2D" parent="." unique_id=251491659]
-position = Vector2(-141, -64)
+position = Vector2(-237, -77)
 scale = Vector2(0.53231466, 0.49846625)
 texture = SubResource("CompressedTexture2D_8ua58")
 script = ExtResource("5_erbq1")
+Dano = 1
+
+[node name="Hurtbox" type="Area2D" parent="boxeador1" unique_id=888450502]
+position = Vector2(75.14354, 30.09231)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="boxeador1/Hurtbox" unique_id=1146806170]
+position = Vector2(-1.5258789e-05, -4.0123053)
+shape = SubResource("RectangleShape2D_hh15x")
+
+[node name="HitboxPuno" type="Area2D" parent="boxeador1" unique_id=83613771]
+position = Vector2(16.907293, 30.092308)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="boxeador1/HitboxPuno" unique_id=388362071]
+position = Vector2(184.88914, 47.144615)
+shape = SubResource("RectangleShape2D_w36i3")
+disabled = true
 
 [node name="Round1" type="Sprite2D" parent="." unique_id=165504090]
-position = Vector2(-305, 45.999985)
-scale = Vector2(0.89889085, 0.7546948)
+position = Vector2(337.99994, 40.99997)
+scale = Vector2(0.77591723, 0.67568946)
 texture = ExtResource("10_drb53")
 script = ExtResource("11_cu60p")
+
+[connection signal="area_entered" from="boxeador2/HitboxPuno" to="." method="_on_hitbox_puno_area_entered"]
+[connection signal="area_entered" from="boxeador1/HitboxPuno" to="." method="_on_hitbox_puno_area_entered"]

@@ -1,19 +1,29 @@
 extends Sprite2D
- 
-@export var velocidad: float = 200.0
- 
-var izquierda_arriba := Vector2(336,76)
-var derecha_arriba := Vector2(227,-233)
-var derecha_abajo := Vector2(-238,-248)
-var izquierda_abajo := Vector2(-326,89)
 
-signal vuelta_terminada #para avisar cuando termine
+@export var velocidad: float = 220.0
+ 
+# movimiento automatico del personaje
+var izquierda_arriba := Vector2(336, 76)
+var derecha_arriba := Vector2(227, -233)
+var derecha_abajo := Vector2(-238, -248)
+var izquierda_abajo := Vector2(-326, 89)
+
+signal vuelta_terminada # para avisar cuando termine
 
 var estado: int = 0
  
+# indica donde inicia el personaje la vuelta
 func _ready() -> void:
-	global_position = izquierda_arriba
+	iniciar_vuelta()
 
+# función para iniciar o repetir la vuelta en los siguientes rounds
+func iniciar_vuelta() -> void:
+	global_position = izquierda_arriba
+	estado = 0
+	show()
+	set_process(true)
+
+# funcion para que se mueva solo
 func _process(delta: float) -> void:
 	if estado == 0:
 		global_position = global_position.move_toward(derecha_arriba, velocidad * delta)
@@ -34,6 +44,6 @@ func _process(delta: float) -> void:
 		global_position = global_position.move_toward(izquierda_arriba, velocidad * delta)
 		if global_position == izquierda_arriba:
 			estado = 4
-			vuelta_terminada.emit() #emite que termino 
+			vuelta_terminada.emit() # emite que termino 
 			hide()
 			set_process(false)
